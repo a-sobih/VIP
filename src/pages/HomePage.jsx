@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import Loading from "@/components/loading";
 import { useSelector, useDispatch } from "react-redux";
 import { setVipData } from "@/rtk/features/vipSlice";
+import VIPCard from "@/components/vip/VIPCard";
+
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -44,31 +46,50 @@ function HomePage() {
         setLoading(false);
       }
     };
-
     fetchVIP();
   }, []);
 
   if (loading) return <Loading />;
 
   return (
-    <div className="relative p-6 overflow-hidden min-h-screen">
+    <div className="relative">
+      {/* Overlay */}
+      <div className="fixed inset-0 bg-[rgb(35,21,6)] z-0 pointer-events-none" />
 
-      {/* Background */}
-      <div className="absolute inset-0 h-full">
-        <img
-          src={bgImage}
-          alt="hero"
-          className="w-full h-full md:object-cover"
-        />
+      {/* Hero section */}
+      <div className="relative p-6 h-screen">
+        {/* Background Image */}
+        <div className="absolute inset-0 h-full">
+          <img
+            src={bgImage}
+            alt="hero"
+            className="w-full h-full md:object-cover"
+          />
+          {/* Bottom Brown Blur Effect */}
+          <div
+            className="
+            absolute 
+            bottom-0 
+            left-0 
+            w-full 
+            h-40 
+            bg-gradient-to-t 
+           from-[rgb(35,21,6)]/90  to-transparent
+          "
+          />
+        </div>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/30"></div>
+        {/* Tabs */}
+        <div className="relative z-10 ">
+          <VIPTabs />
+        </div>
+
+        {/* VIP Content */}
+        <div className="mt-6">
+          {activeVip && <VIPCard vip={activeVip} />}
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 ">
-        <VIPTabs />
-      </div>
 
     </div>
   );

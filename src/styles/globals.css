@@ -1,5 +1,17 @@
+/* global.css */
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+
+@theme {
+    --color-primary: var(--color-primary);
+    --color-primary-light: var(--color-primary-light);
+}
+
+:root {
+    /* Text */
+    --color-primary: #CA864C;
+    --color-primary-light: #E0BB84;
+}

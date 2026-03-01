@@ -54,7 +54,7 @@ const VIPTabs = () => {
         </button>
 
         {/* Scrollable Tabs */}
-        <div ref={scrollRef} className="overflow-x-auto hide-scrollbar pb-2">
+        <div ref={scrollRef} className="overflow-x-auto hide-scrollbar pb-2 flex justify-between items-center">
           <TabsList className="inline-flex w-max mx-auto py-4 px-6 rounded-xl gap-4 bg-white/10 backdrop-blur-md">
             {vipList.map((vip) => (
               <TabsTrigger
@@ -72,11 +72,6 @@ const VIPTabs = () => {
             ))}
           </TabsList>
         </div>
-      </div>
-
-      {/* VIP Content */}
-      <div className="mt-6">
-        {activeVip && <VIPCard vip={activeVip} />}
       </div>
     </Tabs >
   );
