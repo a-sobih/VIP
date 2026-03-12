@@ -5,7 +5,7 @@ import { checkImage } from "@/utils/checkImage";
 
 import { getVipTypes } from "@/services/vip-service";
 import { useEffect, useState } from "react";
-import Loading from "@/components/loading";
+import Loading from "@/components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { setVipData } from "@/rtk/features/vipSlice";
 import VIPCard from "@/components/vip/VIPCard";
