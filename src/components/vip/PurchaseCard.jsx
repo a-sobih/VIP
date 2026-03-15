@@ -74,7 +74,7 @@ export default function PurchaseStickyCard({ activeVip }) {
             <div className="
                     fixed bottom-5 left-1/2 -translate-x-1/2 w-[95%] md:w-[60%] z-50
                     backdrop-blur-xl
-                    bg-gradient-to-r from-[#5A3A1E]/20 to-[#8B5A2B]/20
+                    bg-gradient-to-r from-[#2A1A0E]/90 to-[#5C3A1C]/90
                     border border-white/10
                     shadow-2xl
                     rounded-lg
@@ -107,7 +107,7 @@ export default function PurchaseStickyCard({ activeVip }) {
             {/* Dialog */}
             <Dialog open={open} onOpenChange={setOpen} modal={false}>
                 <DialogContent className="w-full max-w-[95%] md:max-w-4xl backdrop-blur-xl shadow-2xl
-                    bg-gradient-to-r from-black/20 to-[#8B5A2B]/20 border-white/10">
+                    bg-gradient-to-r from-[#2A1A0E]/90 to-[#5C3A1C]/90 border-white/10">
                     <DialogHeader className="text-white">
                         <DialogTitle >
                             {actionType === "send" ? "Confirm Send" : "Confirm Purchase"}

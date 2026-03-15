@@ -40,7 +40,7 @@ const VIPCard = ({ vip }) => {
                 />
             </div>
 
-            <CardContent className="mt-10 lg:mt-40 md:mt-0 py-6 relative z-10 ">
+            <CardContent className="mt-10 mb-30 lg:mt-40 md:mt-0 py-6 relative z-10 ">
                 <h3 className="font-semibold mb-8 text-lg text-primary flex justify-center items-center gap-5">
                     <img src={icon1} alt="icon" className="h-10 w-10" />
                     Exclusive Privilege
