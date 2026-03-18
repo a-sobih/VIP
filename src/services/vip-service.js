@@ -1,6 +1,17 @@
 // vip-service.js
 import api from "./api";
 
+// GET CURRENT USER
+export const getCurrentUser = async () => {
+    const userId = localStorage.getItem("userId")
+    const response = await api.get(`/profile/${userId}`);
+    return response.data.data;
+};
+
+const user = await getCurrentUser();
+
+// const userId = user.id;
+
 // GET VIP TYPES
 export const getVipTypes = async () => {
     const response = await api.get("/vip-types");
@@ -20,8 +31,7 @@ export const buyVip = async (formData) => {
 };
 
 // GET FRIENDS
-export const getFriends = async () => {
-    const response = await api.get(`/get-friends/905`);
-    console.log(response.data)
-    return response.data;
+export const getFriends = async (userId) => {
+    const response = await api.get(`/get-friends/${userId}`);
+    return response.data.data;
 };

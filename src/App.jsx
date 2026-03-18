@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import router from "./routes/router.jsx";
 import { getTokenFromQuery } from "./utils/getTokenFromQuery.js";
 import { Toaster } from "react-hot-toast";
@@ -16,8 +16,12 @@ export default function App() {
 
   useEffect(() => {
     const token = getTokenFromQuery("token");
+    const userId = getTokenFromQuery("userId")
     if (token) {
       localStorage.setItem("token", token);
+    }
+    if (userId) {
+      localStorage.setItem("userId", userId);
     }
   }, [])
 

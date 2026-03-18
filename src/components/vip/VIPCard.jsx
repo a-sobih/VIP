@@ -22,6 +22,7 @@ const VIPCard = ({ vip }) => {
                     />
                     <h2 className="text-lg font-semibold ">{vip.name}</h2>
                     <p className="mt-2">Duration: {vip.duration} days</p>
+                    <p className="mt-2">coins: {vip.duration} </p>
                 </div>
                 <img
                     src={currentImages.badge}

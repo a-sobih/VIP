@@ -7,12 +7,15 @@ import {
     DialogTitle,
     DialogDescription,
 } from "@/components/ui/dialog"
-import { buyVip, sendVip } from "@/services/vip-service"
-import { useState } from "react"
+import { buyVip, getCurrentUser, sendVip } from "@/services/vip-service"
+import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import FriendCombobox from "./FriendCombobox"
 
 export default function PurchaseStickyCard({ activeVip }) {
+    const [currentUser, setCurrentUser] = useState(null);
+    const [loadingUser, setLoadingUser] = useState(true);
+
     const [open, setOpen] = useState(false)
     const [actionType, setActionType] = useState(null)
     const [selectedDuration, setSelectedDuration] = useState("month")
@@ -30,6 +33,27 @@ export default function PurchaseStickyCard({ activeVip }) {
         "15_days": 15,
         month: 30,
     };
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const res = await getCurrentUser();
+                setCurrentUser(res.data);
+                console.log(res.data)
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoadingUser(false);
+            }
+        };
+
+        fetchUser();
+    }, []);
+
+    const currentVipId = currentUser?.vip_type?.id || 0;
+    const activeVipId = activeVip?.id || 0;
+
+    const isLowerVip = activeVipId < currentVipId;
 
     const handleConfirmAction = async () => {
         if (!activeVip) return;
@@ -63,7 +87,12 @@ export default function PurchaseStickyCard({ activeVip }) {
         } catch (error) {
             console.error(error);
 
-            toast.error("Something went wrong");
+            const message =
+                error?.response?.data?.message ||
+                error?.message ||
+                "Something went wrong";
+
+            toast.error(message);
         } finally {
             setLoadingAction(false);
         }
@@ -96,13 +125,17 @@ export default function PurchaseStickyCard({ activeVip }) {
 
                         <Button
                             onClick={() => handleOpen("become")}
-                            className="bg-primary text-white hover:opacity-90"
+                            disabled={isLowerVip}
+                            className={`
+                                bg-primary text-white
+                                ${isLowerVip ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"}
+                            `}
                         >
                             Become
                         </Button>
                     </div>
                 </div>
-            </div>
+            </div>vip_type
 
             {/* Dialog */}
             <Dialog open={open} onOpenChange={setOpen} modal={false}>
