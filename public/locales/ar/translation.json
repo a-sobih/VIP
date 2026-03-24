@@ -1,3 +1,36 @@
 {
-  "Welcome to React": "مرحبا بك في رياكت  ورياكت اي 18 نكست"
+  "vip": {
+    "duration": "المدة: {{days}} يوم",
+    "coins": "العملات: {{coins}}",
+    "exclusivePrivilege": "ميزة حصرية"
+  },
+  "vipFeatures": {
+    "Vip medal": "ميدالية VIP",
+    "Vip Badge": "شارة VIP",
+    "Private Vehicle": "مركبة خاصة"
+  },
+  "PurchaseCard": {
+    "priceLabel": "السعر: {{price}} عملة / 30 يوم",
+    "send": "إرسال",
+    "become": "احصل"
+  },
+  "dialog": {
+    "confirmSend": "تأكيد الإرسال",
+    "confirmPurchase": "تأكيد الشراء",
+    "aboutAction": "أنت على وشك {{action}} حزمة {{package}}",
+    "coins": "عملات",
+    "totalPrice": "السعر الإجمالي",
+    "no": "لا",
+    "yes": "نعم",
+    "processing": "جاري المعالجة...",
+    "day": "لكل يوم",
+    "week": "لكل أسبوع",
+    "15_days": "لكل 15 يوم",
+    "month": "لكل شهر"
+  },
+  "FriendCombobox": {
+    "searchLabel": "ابحث عن صديق",
+    "searchPlaceholder": "ابحث بالاسم...",
+    "noFriends": "لم يتم العثور على أصدقاء."
+  }
 }

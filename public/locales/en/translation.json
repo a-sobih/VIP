@@ -1,3 +1,36 @@
 {
-  "Welcome to React": "Welcome to React and react-i18next"
+  "vip": {
+    "duration": "Duration: {{days}} days",
+    "coins": "Coins: {{coins}}",
+    "exclusivePrivilege": "Exclusive Privilege"
+  },
+  "vipFeatures": {
+    "Vip medal": "VIP Medal",
+    "Vip Badge": "VIP Badge",
+    "Private Vehicle": "Private Vehicle"
+  },
+  "PurchaseCard": {
+    "priceLabel": "Price: {{price}} Coins / 30 Days",
+    "send": "Send",
+    "become": "Become"
+  },
+  "dialog": {
+    "confirmSend": "Confirm Send",
+    "confirmPurchase": "Confirm Purchase",
+    "aboutAction": "You are about to {{action}} the {{package}} package.",
+    "coins": "Coins",
+    "totalPrice": "Total Price",
+    "no": "No",
+    "yes": "Yes",
+    "processing": "Processing...",
+    "day": "Per Day",
+    "week": "Per Week",
+    "15_days": "Per 15 Days",
+    "month": "Per Month"
+  },
+  "FriendCombobox": {
+    "searchLabel": "Search Friend",
+    "searchPlaceholder": "Search by name...",
+    "noFriends": "No friends found."
+  }
 }

@@ -13,8 +13,11 @@ import toast from "react-hot-toast";
 import FriendCombobox from "./FriendCombobox";
 import { useSelector } from "react-redux";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { useTranslation } from "react-i18next";
 
 export default function PurchaseStickyCard({ activeVip }) {
+  const { t } = useTranslation();
+
   const [currentUser, setCurrentUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
 
@@ -60,6 +63,7 @@ export default function PurchaseStickyCard({ activeVip }) {
   const isLowerVip = activeVipId < currentUserVipId;
 
   const handleConfirmAction = async () => {
+
     if (!activeVip) return;
     if (actionType === "send" && !receiverId) {
       toast.error("Please enter receiver ID");
@@ -117,7 +121,7 @@ export default function PurchaseStickyCard({ activeVip }) {
         <div className="max-w-6xl mx-auto p-4 flex items-center justify-between">
           <div>
             <p className="text-white/80 text-sm">
-              Price: {activeVip?.price_in_month} Coins / 30 Days
+              {t("PurchaseCard.priceLabel", { price: activeVip?.price_in_month })}
             </p>
           </div>
 
@@ -126,7 +130,7 @@ export default function PurchaseStickyCard({ activeVip }) {
               onClick={() => handleOpen("send")}
               className="bg-white text-black hover:bg-white/80"
             >
-              Send
+              {t("PurchaseCard.send")}
             </Button>
 
             <Button
@@ -137,12 +141,13 @@ export default function PurchaseStickyCard({ activeVip }) {
                                 ${isLowerVip ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"}
                             `}
             >
-              Become
+              {t("PurchaseCard.become")}
             </Button>
           </div>
         </div>
       </div>
-      vip_type
+
+
       {/* Dialog */}
       <Dialog open={open} onOpenChange={setOpen} modal={false}>
         <DialogContent
@@ -150,11 +155,11 @@ export default function PurchaseStickyCard({ activeVip }) {
                     bg-gradient-to-r from-[#2A1A0E]/90 to-[#5C3A1C]/90 border-white/10"
         >
           <DialogHeader className="text-white">
-            <DialogTitle>
-              {actionType === "send" ? "Confirm Send" : "Confirm Purchase"}
+            <DialogTitle className="text-center">
+              {actionType === "send" ? t("dialog.confirmSend") : t("dialog.confirmPurchase")}
             </DialogTitle>
-            <DialogDescription className="text-white/70">
-              You are about to {actionType} the {activeVip?.name} package.
+            <DialogDescription className="text-white/70 text-center">
+              {t("dialog.aboutAction", { action: actionType, package: activeVip?.name })}
             </DialogDescription>
           </DialogHeader>
 
@@ -162,22 +167,22 @@ export default function PurchaseStickyCard({ activeVip }) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 {
-                  label: "Per Day",
+                  key: "Per day",
                   value: activeVip?.price_in_day,
                   key: "day",
                 },
                 {
-                  label: "Per Week",
+                  key: "Per Week",
                   value: activeVip?.price_in_week,
                   key: "week",
                 },
                 {
-                  label: "Per 15 Days",
+                  key: "Per 15 Days",
                   value: activeVip?.price_in_15_days,
                   key: "15_days",
                 },
                 {
-                  label: "Per Month",
+                  key: "Per Month",
                   value: activeVip?.price_in_month,
                   key: "month",
                 },
@@ -186,15 +191,15 @@ export default function PurchaseStickyCard({ activeVip }) {
                   key={option.key}
                   type="button"
                   className={`
-                                        w-full border rounded-lg px-4 py-3 text-center
-                                        transition-all cursor-pointer
-                                        ${selectedDuration === option.key ? "border-primary bg-primary text-white scale-105 shadow-lg" : "border-white/20 bg-white/10 text-white/80"}
-                                    `}
+                    w-full border rounded-lg px-4 py-3 text-center
+                    transition-all cursor-pointer
+                      ${selectedDuration === option.key ? "border-primary bg-primary text-white scale-105 shadow-lg" : "border-white/20 bg-white/10 text-white/80"}
+                  `}
                   onClick={() => setSelectedDuration(option.key)}
                 >
-                  <span className="block font-medium">{option.label}</span>
+                  <span className="block font-medium">{t(`dialog.${option.key}`)}</span>
                   <span className="block text-xl font-semibold">
-                    {option.value} Coins
+                    {option.value} {t("dialog.coins")}
                   </span>
                 </button>
               ))}
@@ -206,7 +211,7 @@ export default function PurchaseStickyCard({ activeVip }) {
             )}
             <div className="mt-6 text-center">
               <p className="text-lg font-semibold">
-                Total Price:{" "}
+                {t("dialog.totalPrice")} : { }
                 {selectedDuration === "day"
                   ? activeVip?.price_in_day
                   : selectedDuration === "week"
@@ -216,7 +221,7 @@ export default function PurchaseStickyCard({ activeVip }) {
                       : selectedDuration === "month"
                         ? activeVip?.price_in_month
                         : "--"}{" "}
-                Coins
+                {t("dialog.coins")}
               </p>
             </div>
           </div>
@@ -227,7 +232,7 @@ export default function PurchaseStickyCard({ activeVip }) {
               onClick={() => setOpen(false)}
               className="border-white/30 text-white cursor-pointer"
             >
-              No
+              {t("dialog.no")}
             </Button>
 
             <Button
@@ -235,7 +240,7 @@ export default function PurchaseStickyCard({ activeVip }) {
               disabled={loadingAction}
               className="bg-primary text-white cursor-pointer"
             >
-              {loadingAction ? "Processing..." : "Yes"}
+              {loadingAction ? t("dialog.processing") : t("dialog.yes")}
             </Button>
           </DialogFooter>
         </DialogContent>

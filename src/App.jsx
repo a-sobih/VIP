@@ -11,7 +11,8 @@ export default function App() {
   const { i18n } = useTranslation();
   // change dir with language at the same time.
   useEffect(() => {
-    document.dir = i18n.language === "ar" ? "rtl" : "ltr";
+    const dir = i18n.language === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = dir;
   }, [i18n.language]);
 
   return (

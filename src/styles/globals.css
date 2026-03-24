@@ -1,4 +1,7 @@
 /* global.css */
+/* Font Arabic */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -9,6 +12,10 @@
     --color-primary: var(--color-primary);
     --color-primary-light: var(--color-primary-light);
     --color-overlay: rgb(35, 21, 6);
+}
+
+html body {
+    font-family: 'Cairo', sans-serif !important;
 }
 
 :root {

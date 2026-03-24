@@ -1,8 +1,10 @@
 
 import { vipFeatures } from "@/data/vipFeatures";
 import bg from '../../assets/icons/bg.png';
+import { useTranslation } from "react-i18next";
 
 const VipFeaturesSection = () => {
+    const { t } = useTranslation();
     return (
         <section >
             <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 gap-4">
@@ -32,7 +34,7 @@ const VipFeaturesSection = () => {
 
                         {/* Title */}
                         <span className="text-sm text-primary-light text-center font-medium mt-2">
-                            {feature.name}
+                            {t(`vipFeatures.${feature.name}`)}
                         </span>
                     </div>
                 ))

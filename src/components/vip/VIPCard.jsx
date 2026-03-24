@@ -3,14 +3,17 @@ import { Card, CardContent, } from "@/components/ui/card";
 import VipFeaturesSection from "./VipFeaturesSection";
 import icon1 from "@/assets/icons/icon-1.png"
 import { vipImages } from "@/data/vipImages";
+import { useTranslation } from "react-i18next";
 
 
 const VIPCard = ({ vip }) => {
+    const { t } = useTranslation();
+
     const currentImages = vipImages[vip.id] || {}
     return (
         <Card>
             <div className="relative py-20 min-h-[300px] md:min-h-[400px] text-center text-amber-50">
-                <div className="absolute left-10 top-5 
+                <div className="absolute start-10 top-5 
                     w-20 h-20 
                     sm:w-25 sm:h-25 
                     md:w-30 md:h-30">
@@ -21,8 +24,13 @@ const VIPCard = ({ vip }) => {
                         loading="lazy"
                     />
                     <h2 className="text-lg font-semibold ">{vip.name}</h2>
-                    <p className="mt-2">Duration: {vip.duration} days</p>
-                    <p className="mt-2">coins: {vip.duration} </p>
+                    <p className="mt-2">
+                        {t("vip.duration", { days: vip.duration })}
+                    </p>
+
+                    <p className="mt-2">
+                        {t("vip.coins", { coins: vip.duration })}
+                    </p>
                 </div>
                 <img
                     src={currentImages.badge}
@@ -30,7 +38,7 @@ const VIPCard = ({ vip }) => {
                     loading="lazy"
                     className="
                         absolute 
-                        right-5
+                        end-5
                         top-20 
                         md:top-40
                         w-40 h-40          
@@ -44,7 +52,7 @@ const VIPCard = ({ vip }) => {
             <CardContent className="mt-10 mb-30 lg:mt-40 md:mt-0 py-6 relative z-10 ">
                 <h3 className="font-semibold mb-8 text-lg text-primary flex justify-center items-center gap-5">
                     <img src={icon1} alt="icon" className="h-10 w-10" />
-                    Exclusive Privilege
+                    {t("vip.exclusivePrivilege")}
                     <img src={icon1} alt="icon" className="h-10 w-10 scale-x-[-1]" />
                 </h3>
 

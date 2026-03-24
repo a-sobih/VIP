@@ -10,8 +10,11 @@ import {
 import { getFriends } from "@/services/vip-service";
 import img from "@/assets/img/vip1Badge.png";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export default function FriendCombobox({ setReceiverId }) {
+  const { t } = useTranslation();
+
   const [friends, setFriends] = useState([]);
   const [selectedId, setSelectedId] = useState(null); // للباك
   const [selectedName, setSelectedName] = useState(""); // للعرض في input
@@ -31,7 +34,7 @@ export default function FriendCombobox({ setReceiverId }) {
 
   return (
     <div className="mt-4">
-      <label className="block text-white mb-2">Search Friend</label>
+      <label className="block text-white mb-2">{t("FriendCombobox.searchLabel")}</label>
 
       <Combobox
         items={friends}
@@ -45,7 +48,7 @@ export default function FriendCombobox({ setReceiverId }) {
         itemToStringValue={(friend) => friend?.name || ""}
       >
         <ComboboxInput
-          placeholder="Search by name..."
+          placeholder={t("FriendCombobox.searchPlaceholder")}
           value={selectedName} // هنا الاسم للعرض
           onChange={(e) => setSelectedName(e.target.value)} // ممكن تدير فلترة لو حابب
           className="bg-white/10 text-white border-white/30"
@@ -53,7 +56,7 @@ export default function FriendCombobox({ setReceiverId }) {
 
         <ComboboxContent>
           <ComboboxEmpty className="text-white bg-[#8B5A2B]/20 backdrop-blur-xl">
-            No friends found.
+            {t("FriendCombobox.noFriends")}
           </ComboboxEmpty>
 
           <ComboboxList className="gap-2 flex flex-col border border-white/10 bg-[#8B5A2B]/20 backdrop-blur-xl">

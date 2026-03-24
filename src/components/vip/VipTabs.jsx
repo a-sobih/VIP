@@ -4,10 +4,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setActiveVip } from "@/rtk/features/vipSlice";
+import { useTranslation } from "react-i18next";
 
 const scrollAmount = 200;
 
 const VIPTabs = () => {
+  const { i18n } = useTranslation();
+  const isRTL = i18n.dir() === "rtl";
+
   const dispatch = useDispatch();
   const { vipData: vipList, activeVipId } = useSelector((state) => state.vip);
 
@@ -27,36 +31,14 @@ const VIPTabs = () => {
     <Tabs defaultValue={vipList[0]?.name} className="w-full">
       <div className="relative ">
 
-        {/* Left Arrow – Mobile Only */}
-        {/* <button
-          onClick={() => scroll("left")}
-          className="
-          md:hidden
-          absolute -left-[10px] top-1/3 -translate-y-1/2 z-20
-          bg-white/40 backdrop-blur-md
-          p-2 rounded-full text-white cursor-pointer
-        "
-        >
-          <ChevronLeft size={18} />
-        </button> */}
-
-        {/* Right Arrow – Mobile Only */}
-        {/* <button
-          onClick={() => scroll("right")}
-          className="
-          md:hidden
-          absolute -right-[10px] top-1/3 -translate-y-1/2 z-20
-          bg-white/40 backdrop-blur-md
-          p-2 rounded-full text-white cursor-pointer
-        "
-        >
-          <ChevronRight size={18} />
-        </button> */}
-
         {/* Scrollable Tabs */}
-        <div ref={scrollRef} className="overflow-x-auto hide-scrollbar pb-2 flex  justify-between items-center">
+        <div ref={scrollRef} className="overflow-x-auto hide-scrollbar pb-2 flex justify-start gap-2 items-center "
+          dir={isRTL ? "rtl" : "ltr"}
+        >
           <TabsList className="inline-flex w-max mx-auto py-4 px-4 md:px-6 rounded-xl gap-1 md:gap-2 bg-white/10 backdrop-blur-md shadow-lg">
+
             {vipList.map((vip) => (
+
               <TabsTrigger
                 key={vip.id}
                 value={vip.id}
@@ -68,6 +50,7 @@ const VIPTabs = () => {
                 onClick={() => dispatch(setActiveVip(vip.id))}
               >
                 <span className="text-sm md:text-lg">{vip.name}</span>
+
               </TabsTrigger>
             ))}
           </TabsList>
